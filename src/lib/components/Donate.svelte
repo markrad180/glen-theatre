@@ -89,13 +89,13 @@
 						{#if mode === 'money'}
 							<fieldset>
 								<legend class="mb-3 text-sm font-semibold uppercase tracking-widest">Choose an amount</legend>
-								<div class="flex flex-wrap gap-2">
+								<div class="grid grid-cols-3 gap-1.5 sm:flex sm:flex-wrap sm:justify-center sm:gap-2">
 									{#each AMOUNTS as a}
 										<button
 											type="button"
 											onclick={() => (amount = a)}
 											aria-pressed={amount === a}
-											class="font-ticket cursor-pointer border-2 px-4 py-2 text-lg font-bold transition {amount === a
+											class="font-ticket cursor-pointer border-2 px-2.5 py-2 text-base font-bold text-center transition sm:px-4 sm:text-lg {amount === a
 												? 'border-curtain bg-curtain text-cream'
 												: 'border-ink/40 hover:border-curtain'}"
 										>
@@ -106,7 +106,7 @@
 										type="button"
 										onclick={() => (amount = 'custom')}
 										aria-pressed={amount === 'custom'}
-										class="font-ticket cursor-pointer border-2 px-4 py-2 text-lg font-bold transition {amount === 'custom'
+										class="font-ticket cursor-pointer border-2 px-2.5 py-2 text-base font-bold text-center transition sm:px-4 sm:text-lg {amount === 'custom'
 											? 'border-curtain bg-curtain text-cream'
 											: 'border-ink/40 hover:border-curtain'}"
 									>

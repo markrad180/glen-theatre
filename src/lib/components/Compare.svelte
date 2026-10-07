@@ -30,9 +30,11 @@
 					? `transform: translateY(${beforeShift}px) scale(1.25)`
 					: `object-position: ${beforePos}`}
 			/>
+			<span class="font-ticket absolute left-3 top-3 bg-ink/80 px-2 py-1 text-xs tracking-widest text-cream">TODAY</span>
 		</div>
-		<span class="font-ticket absolute left-3 top-3 bg-ink/80 px-2 py-1 text-xs tracking-widest text-cream">TODAY</span>
-		<span class="font-ticket absolute right-3 top-3 bg-gold px-2 py-1 text-xs tracking-widest text-ink">RESTORED</span>
+		<div class="absolute inset-0" style:clip-path="inset(0 0 0 {pos}%)">
+			<span class="font-ticket absolute right-3 top-3 bg-gold px-2 py-1 text-xs tracking-widest text-ink">RESTORED</span>
+		</div>
 		<div class="pointer-events-none absolute inset-y-0 w-0.5 bg-gold-soft shadow-[0_0_12px_#ffd980]" style:left="{pos}%">
 			<div
 				class="absolute top-1/2 left-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-ink bg-gold text-ink"
