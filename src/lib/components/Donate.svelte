@@ -28,7 +28,7 @@
 		'w-full border-b-2 border-ink/40 bg-transparent px-1 py-2 text-ink placeholder:text-ink/50 focus:border-curtain focus:outline-none';
 
 	let mode = $state<Mode>('time');
-	let amount = $state<number | 'custom'>(100);
+	let amount = $state<number | 'custom'>(50);
 	let custom = $state('');
 	let picked = $state<string[]>([]);
 	let done = $state(false);
