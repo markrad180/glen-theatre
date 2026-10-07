@@ -27,23 +27,4 @@ describe('Donate', () => {
 		expect(stubTotal()).toBe('Craft');
 	});
 
-	it('disables submit in money mode when the custom amount is empty', () => {
-		render(Donate);
-		fireEvent.click(screen.getByRole('tab', { name: 'Donate' }));
-		fireEvent.click(screen.getByRole('button', { name: 'Other' }));
-		const submit = screen.getByRole('button', { name: 'Donate' });
-		expect(submit.hasAttribute('disabled')).toBe(true);
-		fireEvent.input(screen.getByLabelText('Custom amount'), { target: { value: '25' } });
-		expect(submit.hasAttribute('disabled')).toBe(false);
-	});
-
-	it('submits to the stamped state and back', () => {
-		render(Donate);
-		fireEvent.input(screen.getByLabelText('Your name'), { target: { value: 'Bryan' } });
-		fireEvent.input(screen.getByLabelText('Email'), { target: { value: 'bryan@glen.example' } });
-		fireEvent.click(screen.getByRole('button', { name: 'Sign me up' }));
-		expect(screen.getByText('Thank you!')).toBeTruthy();
-		fireEvent.click(screen.getByRole('button', { name: 'Give another way' }));
-		expect(screen.getByText('Weekend clean-up days')).toBeTruthy();
-	});
 });

@@ -87,9 +87,8 @@ body {
 }
 .lights.chase .lamp {
   --chase-period: 6s;
-  --chase-count: 96;
   animation: chase-flash-5 var(--chase-period) linear infinite;
-  animation-delay: calc(var(--chase-period) / var(--chase-count) * var(--gi, 0) * -1);
+  animation-delay: calc(var(--chase-period) / var(--chase-count, 96) * var(--gi, 0) * -1);
 }
 .lights.chase-h3 .lamp {
   animation-name: chase-flash-3;

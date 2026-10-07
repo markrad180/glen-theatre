@@ -37,7 +37,20 @@
 			<div
 				class="absolute top-1/2 left-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-ink bg-gold text-ink"
 			>
-				<span aria-hidden="true">↔</span>
+				<svg
+					aria-hidden="true"
+					viewBox="0 0 24 24"
+					class="h-5 w-5"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<line x1="5" y1="12" x2="19" y2="12" />
+					<polyline points="8,8 4,12 8,16" />
+					<polyline points="16,8 20,12 16,16" />
+				</svg>
 			</div>
 		</div>
 		<input

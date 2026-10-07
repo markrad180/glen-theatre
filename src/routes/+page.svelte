@@ -17,18 +17,33 @@
 	// Marquee light effect: 'chase' (comets sweep the perimeter) or 'blink' (static alternating).
 	const MARQUEE = { effect: 'chase', heads: 6 };
 
-	// Perimeter sides, in chase-loop order (top→right→bottom→left). `start`/`reverse`
-	// place each side in the 96-lamp chase loop; `flip` gives the blink corner alternation.
-	const SIDES = [
-		{ key: 'top', cls: 'absolute inset-x-0 top-0', start: 0, reverse: false, flip: false, vertical: false, count: 36 },
-		{ key: 'right', cls: 'absolute inset-y-7 right-0', start: 36, reverse: false, flip: false, vertical: true, count: 12 },
-		{ key: 'bottom', cls: 'absolute inset-x-0 bottom-0', start: 48, reverse: true, flip: true, vertical: false, count: 36 },
-		{ key: 'left', cls: 'absolute inset-y-7 left-0', start: 84, reverse: true, flip: true, vertical: true, count: 12 }
+	type SideKey = 'top' | 'right' | 'bottom' | 'left';
+
+	// Perimeter sides, in chase-loop order (top→right→bottom→left). `reverse`/`flip`
+	// shape each side's lamp order and corner alternation; `count`/`start` are computed
+	// live from the frame size (marquee state) so the lamp pitch stays even at any width.
+	// The left/right columns are inset by one lamp pitch (22px = LAMP_PITCH) top and bottom so
+	// the top/bottom rows own the four corner lamps — no two lamps stack on a corner.
+	const SIDES: { key: SideKey; cls: string; reverse: boolean; flip: boolean; vertical: boolean }[] = [
+		{ key: 'top', cls: 'absolute inset-x-0 top-0', reverse: false, flip: false, vertical: false },
+		{ key: 'right', cls: 'absolute inset-y-[22px] right-0', reverse: false, flip: false, vertical: true },
+		{ key: 'bottom', cls: 'absolute inset-x-0 bottom-0', reverse: true, flip: true, vertical: false },
+		{ key: 'left', cls: 'absolute inset-y-[22px] left-0', reverse: true, flip: true, vertical: true }
 	];
+
+	// Constant lamp pitch in px (11px lamp + 11px gap). Each side renders round(len/pitch)
+	// lamps so the spacing is identical on all four sides regardless of frame size.
+	const LAMP_PITCH = 22;
 
 	let lit = $state(false);
 	let signed = $state(false);
 	let visionEl: HTMLElement | undefined = $state();
+	let frameEl: HTMLElement | undefined = $state();
+	let marquee = $state<{ counts: Record<SideKey, number>; starts: Record<SideKey, number>; total: number }>({
+		counts: { top: 36, right: 12, bottom: 36, left: 12 },
+		starts: { top: 0, right: 36, bottom: 48, left: 84 },
+		total: 96
+	});
 
 	$effect(() => {
 		if (!visionEl) return;
@@ -37,6 +52,39 @@
 		});
 		io.observe(visionEl);
 		return () => io.disconnect();
+	});
+
+	$effect(() => {
+		if (!frameEl) return;
+		const el = frameEl;
+		const compute = () => {
+			const w = el.clientWidth;
+			const h = el.clientHeight;
+			// Even-pitch counts, then round the total to a multiple of 12. The chase keyframes
+			// (chase-flash-6) are tuned for 8-lamp comets on a 96-lamp loop, so a comet spans
+			// T/12 lamps; a whole-lamp comet width keeps the sweep crisp instead of the comets
+			// flickering in/out at sub-lamp edges. The side columns are inset by one lamp pitch
+			// (22px) top and bottom (they don't own the corner lamps), so count them over the
+			// reduced height. Redistribute to preserve the frame's W:H ratio.
+			const sideLen = h - 2 * LAMP_PITCH;
+			const topRaw = Math.max(4, Math.round(w / LAMP_PITCH));
+			const sideRaw = Math.max(1, Math.round(sideLen / LAMP_PITCH));
+			const total = Math.max(12, Math.round((2 * (topRaw + sideRaw)) / 12) * 12);
+			const half = total / 2;
+			const top = Math.round((half * w) / (w + sideLen));
+			const side = half - top;
+			marquee = {
+				counts: { top, right: side, bottom: top, left: side },
+				// Strip order is top(top), right(side), bottom(top), left(side), so the left
+				// offset accumulates the *bottom* strip's `top` lamps, not `side`.
+				starts: { top: 0, right: top, bottom: top + side, left: 2 * top + side },
+				total
+			};
+		};
+		compute();
+		const ro = new ResizeObserver(compute);
+		ro.observe(el);
+		return () => ro.disconnect();
 	});
 </script>
 
@@ -47,10 +95,13 @@
 	<section class="velvet relative flex min-h-[100svh] items-center justify-center px-5 pt-28 pb-16">
 		<div class="w-full max-w-5xl">
 			<div class="border border-gold/70 bg-ink/90 p-3 shadow-[0_0_60px_rgba(242,185,59,0.18)] md:p-5">
-				<div class="relative border border-gold/30 p-4 md:p-6">
+				<div class="relative border border-gold/30 p-4 md:p-6" bind:this={frameEl}>
 					{#each SIDES as s}
 						<Lights
 							{...s}
+							count={marquee.counts[s.key]}
+							start={marquee.starts[s.key]}
+							chaseCount={marquee.total}
 							chase={MARQUEE.effect === 'chase'}
 							heads={MARQUEE.heads}
 							flip={MARQUEE.effect === 'blink' && s.flip}
@@ -113,6 +164,7 @@
 							alt={HISTORY_PHOTO.alt}
 							label="The facade"
 							className="relative aspect-[137/100] w-full grayscale"
+							loading="eager"
 						/>
 					</div>
 					<div class="grid grid-cols-2 gap-px bg-gold/40 border border-gold/40">
