@@ -1,0 +1,28 @@
+# OS
+.DS_Store
+
+# Dependencies
+node_modules/
+
+# SvelteKit
+/.svelte-kit/
+/build/
+/package/
+/package-tamper.d.ts
+vite.config.ts.timestamp-*
+vite.config.js.timestamp-*
+
+# Cloudflare / Wrangler (local dev state)
+.wrangler/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Local reference material (Figma prototype, photos, research docs)
+/temp-assets/
+
+# Local tooling / plugin state (per-machine, do not commit)
+.impeccable/
+.playwright-mcp/

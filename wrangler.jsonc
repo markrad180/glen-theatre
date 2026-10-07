@@ -1,0 +1,13 @@
+{
+	// Cloudflare Workers config — read by Cloudflare's GitHub integration.
+	// Build command there: `npm run build` (SvelteKit + adapter-cloudflare
+	// emits the worker + prerendered assets to .svelte-kit/cloudflare).
+	"name": "glen-theatre",
+	"main": ".svelte-kit/cloudflare/_worker.js",
+	"compatibility_date": "2025-09-01",
+	"compatibility_flags": ["nodejs_als"],
+	"assets": {
+		"binding": "ASSETS",
+		"directory": ".svelte-kit/cloudflare"
+	}
+}

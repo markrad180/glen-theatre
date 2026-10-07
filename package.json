@@ -1,0 +1,39 @@
+{
+  "name": "glen-theatre",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.17"
+  },
+  "imports": {
+    "#lib": "./src/lib",
+    "#lib/*": "./src/lib/*"
+  },
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --config ./vite.config.ts",
+    "test": "vitest run",
+    "deploy": "wrangler deploy",
+    "deploy:dry": "wrangler deploy --dry-run"
+  },
+  "dependencies": {
+    "svelte": "^5.57.2"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-cloudflare": "^8.0.0",
+    "@sveltejs/kit": "^3.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "@testing-library/svelte": "^5.4.2",
+    "jsdom": "^26.0.0",
+    "svelte-check": "^4.0.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.3",
+    "vitest": "^5.0.3",
+    "wrangler": "^4.148.0"
+  }
+}
