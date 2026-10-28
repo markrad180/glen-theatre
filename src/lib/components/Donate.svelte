@@ -1,11 +1,11 @@
 <script lang="ts">
 	type Mode = 'money' | 'time' | 'talent';
 	const MODES: { id: Mode; label: string; admit: string }[] = [
-		{ id: 'money', label: 'Donate', admit: 'ADMIT ONE · PATRON' },
-		{ id: 'time', label: 'Volunteer', admit: 'ADMIT ONE · VOLUNTEER' },
-		{ id: 'talent', label: 'Skills', admit: 'ADMIT ONE · CREW' }
+		{ id: 'money', label: 'Sponsor', admit: 'ADMIT ONE · PATRON' },
+		{ id: 'time', label: 'Participate', admit: 'ADMIT ONE · PARTICIPANT' },
+		{ id: 'talent', label: 'Restore', admit: 'ADMIT ONE · CREW' }
 	];
-	const AMOUNTS = [25, 50, 100, 250, 500];
+	const AMOUNTS = [50, 100, 250, 500, 1000];
 	const IMPACT: Record<number, string> = {
 		25: 'Replaces a bulb on the marquee',
 		50: 'Sponsors a square foot of new flooring',
@@ -13,15 +13,18 @@
 		250: 'Funds a day of plaster repair',
 		500: 'Puts your name on the donor wall'
 	};
-	const TIME = ['Weekend clean-up days', 'Painting & light repair', 'Event help & ushering', 'Spreading the word'];
+	// ponytail: subtext hidden per legal review; flip to true and retune IMPACT keys to the new tiers to re-enable
+	const SHOW_IMPACT = false;
+	const TIME = ['Weekend clean-up days', 'Programming & Talent', 'Event coordination', 'Spreading the word'];
 	const TALENT = [
 		'Carpentry / construction',
-		'Electrical',
+		'Upholstery',
 		'Plaster & masonry',
 		'Historic preservation',
-		'Design / architecture',
+		'Moving',
 		'Grant writing / fundraising',
-		'Photo / video / social'
+		'Photo / video / social',
+		'Painting'
 	];
 
 	const field =
@@ -38,6 +41,7 @@
 	let admit = $derived(MODES.find((m) => m.id === mode)!.admit);
 	let list = $derived(mode === 'time' ? TIME : TALENT);
 	let stubValue = $derived(mode === 'money' ? `$${total}` : mode === 'time' ? 'Time' : 'Craft');
+	let ticketNo = $derived(String(MODES.findIndex((m) => m.id === mode) + 1).padStart(4, '0'));
 
 	function toggle(v: string) {
 		picked = picked.includes(v) ? picked.filter((x) => x !== v) : [...picked, v];
@@ -56,7 +60,7 @@
 </script>
 
 <div class="mx-auto max-w-4xl">
-	<div role="tablist" aria-label="Ways to give" class="mb-8 grid grid-cols-3 gap-2 md:gap-4">
+	<div role="tablist" aria-label="Ways to sponsor" class="mb-8 grid grid-cols-3 gap-2 md:gap-4">
 		{#each MODES as m}
 			<button
 				role="tab"
@@ -81,7 +85,7 @@
 						<h3 class="font-display text-4xl text-curtain">Thank you!</h3>
 						<p class="mt-4 text-lg">Your ticket is stamped. We’ll be in touch with next steps as the restoration begins.</p>
 						<button type="button" onclick={() => (done = false)} class="font-ticket mt-6 cursor-pointer underline">
-							Give another way
+							Sponsor another way
 						</button>
 					</div>
 				{:else}
@@ -123,7 +127,7 @@
 										aria-label="Custom amount"
 									/>
 								{/if}
-								{#if amount !== 'custom'}
+								{#if SHOW_IMPACT && amount !== 'custom'}
 									<p class="mt-3 text-sm italic">{impact}</p>
 								{/if}
 							</fieldset>
@@ -165,13 +169,13 @@
 			<div aria-hidden="true" class="hidden border-l-2 border-dashed border-ink/40 md:block"></div>
 
 			<div class="flex flex-col items-center justify-center gap-4 bg-gold/70 p-6 text-center md:bg-transparent">
-				<p class="font-ticket text-xs tracking-[0.3em]">NO. 0001</p>
+				<p class="font-ticket text-xs tracking-[0.3em]">NO. {ticketNo}</p>
 				<p class="font-display text-5xl text-curtain">{stubValue}</p>
 				<button
 					disabled
 					class="font-display w-full cursor-pointer bg-curtain px-4 py-3 text-xl text-cream transition hover:bg-ink disabled:cursor-not-allowed disabled:opacity-40"
 				>
-					{mode === 'money' ? 'Donate' : 'Sign me up'}
+					{mode === 'money' ? 'Sponsor' : 'Sign me up'}
 				</button>
 				<p class="text-xs">Form submissions coming soon...</p>
 			</div>

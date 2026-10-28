@@ -5,44 +5,44 @@ export const THEATER = {
   name: 'The Glen Theatre',
   town: 'Glen Rock, Pennsylvania',
   address: '37 Manchester Street',
-  tagline: 'The lights are coming back on.'
+  tagline: 'A new act begins.'
 }
 
 export const HISTORY = [
   {
-    year: '1913',
+    year: '1872–1912',
     title: 'The Splendid Little Opera House',
-    text: 'The Glen Rock Musical Association, founded in 1872, bought the land in July 1912. Architect Joseph Dise designed the Glen Rock Auditorium, a 500-seat opera house, theater and band hall finished in late 1913. It became home base for Roland F. Seitz, the “Parade March King” whose marches rivaled Sousa’s.'
+    text: 'The Glen Rock Musical Association, founded in 1872, bought the land in July 1912. Architect Joseph Dise was hired to design the Glen Rock Auditorium—a 500-seat opera house, theater, and band hall. It served as the home base for Roland F. Seitz, the famous “Parade Music Prince,” whose compositions rivaled those of John Philip Sousa. The stage hosted famous local pieces like the Glen Rock March, Pomposa, Salutation, and March Grandioso—works that are still performed by regional community bands today and featured by major university marching bands across the country.'
   },
   {
     year: '1913',
-    title: 'Air-Conditioned by a Creek',
-    text: 'The building sits directly over a natural stream that feeds Codorus Creek. Dise put it to work: a giant hamster-wheel style fan in the basement pushed naturally chilled air up through floor vents, long before modern air conditioning.'
+    title: 'First Pictures Before the Grand Opening',
+    text: 'Even before construction of the Auditorium was completed, silent film serials began screening at the venue in 1913. In June of that year, the Musical Association purchased the local photoplay parlor, acquiring the projector operated by Lewis Yost to begin bringing moving pictures to the community.'
   },
   {
     year: '1932',
     title: 'The Movies Move In',
-    text: 'Chalmers Sechrist leased the hall to show films. By 1935 he and his wife Lottie owned it and renamed it the Glen Theatre. Kids paid about 17 cents and adults 35. Silent films with live piano, Movietone newsreels, cartoons and Westerns shared the stage with high school plays, operettas like HMS Pinafore, and graduations.'
+    text: 'Chalmers Sechrist leased the hall in 1932 to show movies on a regular schedule. By 1935, he and his wife, Lottie, purchased the building and officially renamed it the Glen Theatre. Kids paid about 17¢ and adults 35¢ for admission. Silent films with live piano, Movietone newsreels, cartoons, and Westerns shared the stage with high school plays, operettas like H.M.S. Pinafore, and community graduations.'
   },
   {
-    year: '1967',
+    year: '1967–1975',
     title: 'Passed Between Families',
-    text: 'The Sechrists sold to the Bortner family in 1967, who sold to the Strausbaugh family in 1975. The Glen kept its weekend shows and its place as the last operating community movie theater in York County outside of York City.'
+    text: 'The Sechrists sold the theater to the Bortner family in 1967, who later sold it to the Strausbaugh family in 1975. Through it all, the Glen kept its weekend shows running, cementing its legacy as the last operating community movie theater in York County outside of York City.'
   },
   {
     year: '2017',
     title: 'The Last Reel',
-    text: 'The Glen could not afford the jump from 35mm film to digital projection. The final movie shown, fittingly, was the animated film Sing, in January 2017.'
+    text: 'Unable to afford the costly industry transition from 35mm film to digital projection, the theater was forced to close its doors. The final movie shown on its screen, fittingly, was the animated film Sing in January 2017.'
   },
   {
     year: '2023',
-    title: 'A Brief Revival',
-    text: 'Local resident Abigail Lipka bought the building in August 2023 to make it a community center, and organized volunteer clean-up days. The plan did not move forward, and the property returned to the market.'
+    title: 'Laying the Groundwork',
+    text: 'Local resident Abigail Lipka bought the building in August 2023 to rekindle interest in the historic venue. She made meaningful progress on the structure, organizing volunteer clean-up days and rallying community support before deciding to pass the torch and return the property to the market.'
   },
   {
-    year: 'Now',
+    year: 'Present Day',
     title: 'A Second Act',
-    text: 'Bryan Parnell wants to buy the Glen and bring it back, with a community invited to help raise the curtain again.'
+    text: 'Bryan Parnell is seeking to purchase the Glen Theatre and bring it back to life as a vibrant venue for movies, live entertainment, and musical performances—inviting the community to join together and help raise the curtain once again.'
   }
 ]
 
@@ -54,10 +54,10 @@ export const FACTS = [
 ]
 
 export const CONDITION = [
-  'Significant water leaks',
-  'Lead-containing paint',
-  'Rot throughout',
-  'Upper walls pulling away from the frame'
+  'Leaking original roof (1913)',
+  'Peeling and chipped paint, cracked plaster',
+  'Deteriorated seats',
+  'Damaged doors and windows'
 ]
 
 export const HISTORY_PHOTO = {
@@ -102,6 +102,6 @@ export const PROGRESS = [
 
 export const EVENTS = [
   { date: 'OCT', day: '00', title: 'Open house & tours', note: 'Walk the building with Bryan' },
-  { date: 'NOV', day: '00', title: 'Volunteer work day', note: 'Gloves and coffee provided' },
+  { date: 'NOV', day: '00', title: 'Community work day', note: 'Gloves and coffee provided' },
   { date: 'DEC', day: '00', title: 'Fundraiser screening', note: 'A classic film, one night only' }
 ]

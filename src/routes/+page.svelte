@@ -139,7 +139,7 @@
 	<!-- HISTORY -->
 	<section id="history" class="scroll-mt-16 px-5 py-20 md:py-28">
 		<SectionHead kicker="Feature Presentation" title="A Century of Show Business">
-			Over a century in the heart of {THEATER.town}, from a band hall and opera house to the town’s movie theater.
+			Entertaining families in Glen Rock for over a century with music, movies, and magic.
 		</SectionHead>
 
 		<div class="mx-auto grid max-w-6xl gap-16 lg:grid-cols-[1fr_360px]">
@@ -202,20 +202,20 @@
 				</Reveal>
 			{/each}
 		</div>
-		<Reveal className="mx-auto mt-12 max-w-6xl">
+		<Reveal className="mx-auto mt-12 max-w-4xl">
 			<div class="grid gap-8 border border-gold/30 p-6 md:grid-cols-[1fr_auto] md:items-center md:p-10">
 				<div>
 					<p class="font-ticket text-sm uppercase tracking-[0.3em] text-gold">Condition report</p>
-					<ul class="mt-4 grid gap-x-8 gap-y-2 text-lg font-light text-cream/85 sm:grid-cols-2">
+					<ul class="mt-4 grid gap-y-3 text-xl font-light text-cream/85">
 						{#each CONDITION as c}
 							<li>— {c}</li>
 						{/each}
 					</ul>
 				</div>
-				<div class="md:border-l md:border-gold/30 md:pl-10 md:text-center">
+				<div class="text-center md:border-l md:border-gold/30 md:pl-10">
 					<p class="font-display marquee-glow text-5xl text-gold-soft">$500,000</p>
 					<p class="font-ticket mt-2 text-xs uppercase tracking-widest text-cream/70">
-						Estimated to make it safe and stable
+						Estimated for restoration
 					</p>
 				</div>
 			</div>
@@ -382,7 +382,7 @@
 	<section id="give" class="velvet scroll-mt-16 px-5 py-20 md:py-28">
 		<SectionHead kicker="Box Office" title="Take Your Seat in History">
 			Every dollar, every hour, and every skill brings the marquee closer to shining again. Choose how you’d like to
-			give.
+			sponsor.
 		</SectionHead>
 		<Reveal>
 			<Donate />

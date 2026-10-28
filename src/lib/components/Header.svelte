@@ -7,7 +7,7 @@
 		{ id: 'vision', label: 'The Vision' },
 		{ id: 'bryan', label: 'Bryan' },
 		{ id: 'progress', label: 'Progress' },
-		{ id: 'give', label: 'Give' }
+		{ id: 'give', label: 'Sponsor' }
 	].filter((n) => n.id !== 'progress' || SHOW_PROGRESS);
 
 	let active = $state('');
@@ -53,7 +53,7 @@
 				href="#give"
 				class="font-display bg-gold px-3 py-2 text-sm text-ink transition hover:bg-gold-soft hover:shadow-[0_0_24px_rgba(242,185,59,0.7)] sm:px-5 sm:text-base"
 			>
-				<span class="hidden sm:inline">Support the Restoration</span><span class="sm:hidden">Give</span>
+				<span class="hidden sm:inline">Support the Restoration</span><span class="sm:hidden">Sponsor</span>
 			</a>
 			<button
 				class="cursor-pointer p-2 text-2xl text-gold lg:hidden"
